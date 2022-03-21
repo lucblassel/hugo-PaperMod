@@ -41,7 +41,8 @@
 
 {{- /* include `an-old-hope` if hljs is on */}}
 {{- $isHLJSdisabled := (.Site.Params.assets.disableHLJS | default false) }}
-{{- $hljs := (cond ($isHLJSdisabled) (" " | resources.FromString "assets/css/hljs-blank.css") (resources.Get "css/hljs/an-old-hope.min.css")) }}
+{{/*  {{- $hljs := (cond ($isHLJSdisabled) (" " | resources.FromString "assets/css/hljs-blank.css") (resources.Get "css/hljs/an-old-hope.min.css")) }}  */}}
+{{- $hljs := (cond ($isHLJSdisabled) (" " | resources.FromString "assets/css/hljs-blank.css") (resources.Get "css/hljs/atom-one-dark.min.css")) }}
 
 {{- /* order is important */}}
 {{- $core := (slice $theme_vars $reset $common $hljs $media) | resources.Concat "assets/css/core.css" }}
