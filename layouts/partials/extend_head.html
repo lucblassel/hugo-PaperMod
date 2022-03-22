@@ -3,5 +3,10 @@
 {{ if .Params.latex }} 
 {{ partial "math.html" . }}
 {{ end }}
+
+{{ if not .Site.IsServer }}
+  <script async defer data-website-id="a966a423-bf66-4a01-bda1-8903d33f75a7" src="https://umami-production-7mid.up.railway.app/umami.js"></script>
+{{ end }}
+
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
