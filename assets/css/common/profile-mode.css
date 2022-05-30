@@ -18,6 +18,7 @@
     display: inline-table;
     border-radius: 50%;
     pointer-events: none;
+    aspect-ratio: 1/1;
 }
 
 .buttons {
