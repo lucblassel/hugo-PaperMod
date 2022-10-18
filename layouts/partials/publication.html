@@ -1,0 +1,16 @@
+<div>
+    {{ partial "author_list.html" .authors }}
+    <span><b>"{{ .title }}"</b></span> 
+    {{ if .volume }}
+        in <span><i>{{ .journal }}</i></span>
+        <span>({{ .volume }}):</span>
+    {{ else }}
+        in <span><i>{{ .journal }}</i>:</span>
+    {{ end }}
+    {{ if .pages }}
+        <span>p.{{ .pages }}.</span>
+    {{ end }}
+    <span>({{ .year }})</span>
+    <span><a href="https://doi.org/{{ .DOI }}">{{ .doi }}</a></span>
+    <hr>
+</div>

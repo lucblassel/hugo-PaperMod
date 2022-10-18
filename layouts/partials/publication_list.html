@@ -1,0 +1,20 @@
+{{ $bib := slice }}
+{{ range .bibliography }}
+    {{/*  Reshaping Zotero .JSON  */}}
+    {{ $authors := dict "authors" .author }}
+    {{ $title := dict "title" .title }}
+    {{ $doi := dict "doi" .DOI }}
+    {{ $journal := dict "journal" (index . "container-title") }}
+    {{ $year := dict "year" (index (index (index .issued "date-parts") 0) 0)}}
+    {{ $pages := dict "pages" .page }}
+    {{ $volume := dict "volume" .volume }}
+
+    {{ $elem := merge $authors $title $doi $journal $year $pages $volume }}
+
+    {{ $bib = $bib | append $elem }}
+{{ end }}
+<ol>
+{{ range sort $bib "year" "desc"}}
+    <li>{{ partial "publication.html" . }}</li>
+{{ end }}
+</ol>

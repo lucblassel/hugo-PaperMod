@@ -1,0 +1,28 @@
+<span>
+{{ $list := . }}
+{{ $len := (len $list) }}
+{{ range $index, $element := $list }}
+    {{/*  Last author  */}}
+    {{ if eq (add $index 1) $len }}
+        {{ if eq $element.family "Blassel"}}
+            & <b>{{ $element.family }} {{ $element.given }}</b>.
+        {{ else }}
+            & {{ $element.family }} {{ $element.given }}.
+        {{ end }}
+    {{/*  Second to last author  */}}
+    {{ else if eq (add $index 2) $len }}
+        {{ if eq $element.family "Blassel"}}
+            <b>{{ $element.family }} {{ $element.given }}</b>
+        {{ else }}
+            {{ $element.family }} {{ $element.given }}
+        {{ end }}
+    {{/*  Other authors  */}}
+    {{ else }}
+        {{ if eq $element.family "Blassel"}}
+            <b>{{ $element.family }} {{ $element.given }}</b>,
+        {{ else }}
+            {{ $element.family }} {{ $element.given }},
+        {{ end }}
+    {{ end }}
+{{ end }}
+</span>

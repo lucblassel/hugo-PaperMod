@@ -27,6 +27,12 @@
   {{- partial "toc.html" . }}
   {{- end }}
 
+  {{ if (eq .Params.type "publications") }}
+    <div class="post-content">
+      {{ partial "publication_list.html" .Site.Data }}
+    </div>
+  {{ end }}
+
   {{- if .Content }}
   <div class="post-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
