@@ -130,6 +130,8 @@
 
 .post-content table {
     margin-bottom: 32px;
+    margin-left: auto;
+    margin-top: auto;
 }
 
 .post-content table th,
@@ -426,4 +428,9 @@ h6:hover .anchor {
 
 [dir="rtl"] .paginav .next {
     text-align: left;
+}
+
+.markdown-table {
+    margin-left: auto;
+    margin-right: auto;
 }

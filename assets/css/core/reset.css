@@ -39,9 +39,6 @@ hgroup,
 main,
 nav,
 section,
-table {
-    display: block;
-}
 
 h1,
 h2,
@@ -78,7 +75,9 @@ ul {
 }
 
 table {
-    width: 100%;
+    /* width: 100%; */
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     border-spacing: 0;
     overflow-x: auto;
