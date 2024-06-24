@@ -13,8 +13,61 @@
 
     {{ $bib = $bib | append $elem }}
 {{ end }}
-<ol>
-{{ range sort $bib "year" "desc"}}
-    <li>{{ partial "publication.html" . }}</li>
+
+<!-- Accepted and Published papers -->
+{{ if not (eq ($bib | len) 0) }}
+  <h2>Published Articles</h2>
+  <ol>
+  {{ range sort $bib "year" "desc"}}
+      <li>{{ partial "publication.html" . }}</li>
+  {{ end }}
+  </ol>
 {{ end }}
-</ol>
+
+
+<!-- Preprints if there are any valid ones at the moment -->
+{{ if not (eq (.preprints  | len) 0) }}
+  <h2>Preprints</h2>
+  <ul>
+  {{ range .preprints }}
+    {{ $year := (index (index (index .issued "date-parts") 0) 0)}}
+    <li>
+    <div>
+      {{ partial "author_list.html" .author }}
+      <span><b>"{{ .title }}"</b></span> 
+      <span>({{ $year }})</span>
+      <span><a href="https://doi.org/{{ .DOI }}">{{ .DOI }}</a></span>
+    </div>
+    </li>
+  {{ end }}
+  </ul>
+{{ end }}
+
+<!-- Conference and Invited talks  -->
+{{ if not (eq (.talks | len) 0) }}
+  <h2>Talks</h2>
+
+  <ul>
+  {{ range sort .talks "date" "desc" }}
+    <li>
+    <div>
+      <span><b>"{{ .title }}"</b>,</span>
+      <span> {{ time.Format "January _2 2006" .date }}, </span>
+
+      <br><span><i>{{ .venue }}</i></span>
+      {{ if .slides }}
+      <span>, <a href="{{ .slides }}">slides</a></span>
+        {{ if .source }}
+        <span>, <a href="{{ .source }}">source</a></span>
+        {{ end }}
+      {{ end }}
+      {{ if .comment }}
+        <br><span><i>*{{ .comment }}</i></span>
+      {{ end }}
+    </div>
+    </li>
+  {{ end}}
+  </ul>
+{{ end}}
+
+</br>
