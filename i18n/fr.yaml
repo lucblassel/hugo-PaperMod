@@ -31,3 +31,12 @@
 
 - id: code_copied
   translation: "copié!"
+
+- id: published_articles
+  translation: "Articles Publiés"
+
+- id: preprints
+  translation: "Prépublications & Articles Soumis"
+
+- id: talks
+  translation: "Présentations"

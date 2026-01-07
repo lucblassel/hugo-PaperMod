@@ -4,18 +4,19 @@ This is just a placeholder blank stylesheet so as to support adding custom style
 Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
 */
 
-a:hover{
-    opacity: 80%;
+a:hover {
+  opacity: 80%;
 }
 
 .chroma {
-    background-color: unset;
+  background-color: unset;
 }
 
 .highlight pre {
-    background-color: #dc4823;
+  background-color: #dc4823;
 }
 
 /* .highlight pre code{
     border-radius: 0;
 } */
+

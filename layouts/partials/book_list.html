@@ -1,0 +1,37 @@
+{{ range $key, $book := .books }}
+<h3>{{ $key }}</h3>
+<!--<pre>-->
+<!--    {{ $book | jsonify (dict "indent" "  ")}}-->
+<!--  </pre-->
+<!-->-->
+
+<a
+  href="https://librarything.com/work/{{ .workcode }}/details//{{ .books_id }}"
+>
+  <div class="book_card">
+    {{ $image_url := printf "covers/%s.webp" $key }} {{ with $image :=
+    resources.Get $image_url }} {{ $rescaled := $image.Fit "100x160" }}
+    <img
+      src="{{$rescaled.RelPermalink}}"
+      width="{{$rescaled.Width}}"
+      height="{{$rescaled.Height}}"
+    />
+    {{ end }}
+    <div class="book_details">
+      <div class="book_titledate">
+        <h3>{{ $book.title }}</h3>
+        <span>({{$book.date}})</span>
+      </div>
+
+      <div class="book_authorlang">
+        <span>
+          {{ if index $book "language"}} {{ if index $book "language" 0 }} found
+          {{ else }} ⁇ {{ end }} {{else}} ❓ {{end}}
+        </span>
+        <span>{{ $book.authors }}</span>
+      </div>
+    </div>
+  </div>
+</a>
+<hr />
+{{ end }}

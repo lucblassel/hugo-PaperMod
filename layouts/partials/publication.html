@@ -1,16 +1,16 @@
 <div>
-    {{ partial "author_list.html" .authors }}
-    <span><b>"{{ .title }}"</b></span> 
+  <span>({{ .year }})</span> -
+  {{ partial "author_list.html" .authors }}<br/>
+  <span><b>"{{ .title }}"</b></span><br/>
     {{ if .volume }}
         in <span><i>{{ .journal }}</i></span>
-        <span>({{ .volume }}):</span>
+        <span>({{ .volume }})</span>
     {{ else }}
-        in <span><i>{{ .journal }}</i>:</span>
+        in <span><i>{{ .journal }}</i></span>
     {{ end }}
     {{ if .pages }}
-        <span>p.{{ .pages }}.</span>
+        : <span>p.{{ .pages }}.</span>
     {{ end }}
-    <span>({{ .year }})</span>
     <span><a href="https://doi.org/{{ .doi }}">{{ .doi }}</a></span>
     <hr>
 </div>

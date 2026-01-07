@@ -14,9 +14,25 @@
     {{ $bib = $bib | append $elem }}
 {{ end }}
 
+{{ $prebib := slice }}
+{{ range .preprints }}
+    {{/*  Reshaping Zotero .JSON  */}}
+    {{ $authors := dict "authors" .author }}
+    {{ $title := dict "title" .title }}
+    {{ $doi := dict "doi" .DOI }}
+    {{ $journal := dict "journal" .publisher }}
+    {{ $year := dict "year" (index (index (index .issued "date-parts") 0) 0)}}
+    {{ $pages := dict "pages" .page }}
+    {{ $volume := dict "volume" .volume }}
+
+    {{ $elem := merge $authors $title $doi $journal $year $pages $volume }}
+
+    {{ $prebib = $prebib | append $elem }}
+{{ end }}
+
 <!-- Accepted and Published papers -->
 {{ if not (eq ($bib | len) 0) }}
-  <h2>Published Articles</h2>
+<h2>{{ i18n "published_articles" }}</h2>
   <ol>
   {{ range sort $bib "year" "desc"}}
       <li>{{ partial "publication.html" . }}</li>
@@ -27,25 +43,17 @@
 
 <!-- Preprints if there are any valid ones at the moment -->
 {{ if not (eq (.preprints  | len) 0) }}
-  <h2>Preprints</h2>
-  <ul>
-  {{ range .preprints }}
-    {{ $year := (index (index (index .issued "date-parts") 0) 0)}}
-    <li>
-    <div>
-      {{ partial "author_list.html" .author }}
-      <span><b>"{{ .title }}"</b></span> 
-      <span>({{ $year }})</span>
-      <span><a href="https://doi.org/{{ .DOI }}">{{ .DOI }}</a></span>
-    </div>
-    </li>
+<h2>{{ i18n "preprints" }}</h2>
+  <ol>
+  {{ range sort $prebib "year" "desc"}}
+      <li>{{ partial "publication.html" . }}</li>
   {{ end }}
-  </ul>
+  </ol>
 {{ end }}
 
 <!-- Conference and Invited talks  -->
 {{ if not (eq (.talks | len) 0) }}
-  <h2>Talks</h2>
+<h2>{{ i18n "talks" }}</h2>
 
   <ul>
   {{ range sort .talks "date" "desc" }}

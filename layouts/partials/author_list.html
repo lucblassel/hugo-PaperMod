@@ -5,23 +5,23 @@
     {{/*  Last author  */}}
     {{ if eq (add $index 1) $len }}
         {{ if eq $element.family "Blassel"}}
-            & <b>{{ $element.family }} {{ $element.given }}</b>.
+            & <b>{{ $element.given }} {{ $element.family }}</b>.
         {{ else }}
-            & {{ $element.family }} {{ $element.given }}.
+            & {{ $element.given }} {{ $element.family }}.
         {{ end }}
     {{/*  Second to last author  */}}
     {{ else if eq (add $index 2) $len }}
         {{ if eq $element.family "Blassel"}}
-            <b>{{ $element.family }} {{ $element.given }}</b>
+            <b>{{ $element.given }} {{ $element.family }}</b>
         {{ else }}
-            {{ $element.family }} {{ $element.given }}
+            {{ $element.given }} {{ $element.family }}
         {{ end }}
     {{/*  Other authors  */}}
     {{ else }}
         {{ if eq $element.family "Blassel"}}
-            <b>{{ $element.family }} {{ $element.given }}</b>,
+            <b>{{ $element.given }} {{ $element.family }}</b>,
         {{ else }}
-            {{ $element.family }} {{ $element.given }},
+            {{ $element.given }} {{ $element.family }},
         {{ end }}
     {{ end }}
 {{ end }}
